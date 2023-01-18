@@ -1,0 +1,45 @@
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Press Start 2P' rel='stylesheet'>
+</head>
+
+<ion-content>
+  <ion-grid [fixed]="true" class="pokemon-grid">
+    <ion-row class="box">
+      <ion-col size="6" *ngFor="let pokemon of pokemons; let index">
+
+        <ion-card>
+          <img [src]="pokemon.sprites.front_shiny " (click)="goToDetails(pokemon)" style="cursor:pointer;"
+            alt="Pokemon">
+          <h3 style="margin: 0 auto; cursor:pointer;" (click)="goToDetails(pokemon)"> {{ pokemon.name }} </h3>
+
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <p>
+                  <b><ion-icon name="paw"></ion-icon></b> {{ pokemon.types[0].type.name }}
+                </p>
+                <p>
+                  <b><ion-icon name="heart"></ion-icon></b> {{ pokemon.height }}
+                </p>
+              </ion-col>
+              <ion-col size="6">
+                <p>
+                  <b><ion-icon name="speedometer"></ion-icon></b> {{ pokemon.stats[0].base_stat }}
+                </p>
+                <p>
+                  <b><ion-icon name="flash"></ion-icon></b> {{ pokemon.stats[1].base_stat }}
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+      <ion-infinite-scroll-content loadingText="Please wait..." loadingSpinner="bubbles"></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-grid>
+</ion-content>
